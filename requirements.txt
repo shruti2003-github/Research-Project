@@ -1,4 +1,5 @@
 streamlit
-onnxruntime
+tensorflow-cpu==2.9.1
 numpy
 pillow
+h5py
