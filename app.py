@@ -1,43 +1,47 @@
 import streamlit as st
-import numpy as np
 import tensorflow as tf
-from tensorflow.keras.models import load_model
+import numpy as np
 from PIL import Image
 
-# Page config
-st.set_page_config(page_title="Food Classifier", layout="centered")
+# Page layout
+st.set_page_config(layout="centered")
 
 # Load model
 @st.cache_resource
-def load_my_model():
-    return load_model("street_food_model.h5")
+def load_model_file():
+    return tf.keras.models.load_model("food_model.keras")
 
-model = load_my_model()
+model = load_model_file()
 
-# Class labels (make sure order matches your training)
-class_names = ['Vada Pav', 'Paani Puri', 'Masala Dosa', 'Idli', 'Samosa', 'Grilled Sandwich']
+# Class labels
+class_names = ["Grilled Sandwich", "Idli", "Masala Dosa", "Paani Puri", "Samosa", "Vada Pav"]
 
 # Title
-st.title("Mumbai Street Food Classifier")
-st.write("Upload an image and the model will predict the food category.")
+st.title("🍽️ Mumbai Street Food Classification App")
 
-# Upload image
-uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "png", "jpeg"])
+uploaded_file = st.file_uploader("Upload Image", type=["jpg", "png"])
 
 if uploaded_file is not None:
-    img = Image.open(uploaded_file).convert('RGB')
-    st.image(img, caption="Uploaded Image", use_column_width=True)
+    # Load image
+    img = Image.open(uploaded_file).resize((224, 224))
+
+    # Create nice layout
+    col1, col2 = st.columns([1, 1.5])
+
+    with col1:
+        st.image(img, caption="Uploaded Image", width=220)
 
     # Preprocess
-    img = img.resize((224, 224))
     img_array = np.array(img) / 255.0
     img_array = np.expand_dims(img_array, axis=0)
 
-    # Prediction
+    # Predict
     prediction = model.predict(img_array)
-    predicted_class = class_names[np.argmax(prediction)]
+    predicted_class = np.argmax(prediction)
     confidence = np.max(prediction)
 
-    # Output
-    st.success(f"Prediction: {predicted_class}")
-    st.info(f"Confidence: {confidence*100:.2f}%")
+    with col2:
+        st.markdown("### Prediction Result")
+        st.success(f"🍽️ {class_names[predicted_class]}")
+        st.info(f"📊 Confidence: {confidence * 100:.2f}%")
+
