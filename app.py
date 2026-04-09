@@ -10,7 +10,7 @@ st.set_page_config(page_title="Food Classifier", layout="centered")
 # Load model
 @st.cache_resource
 def load_my_model():
-    return load_model("street_food_model.h5", Compile=False)
+    return load_model("street_food_model.h5")
 
 model = load_my_model()
 
