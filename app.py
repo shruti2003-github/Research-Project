@@ -116,7 +116,7 @@ footer {visibility: hidden;}
 # ── Constants ─────────────────────────────────────────────────────────────────
 CLASS_NAMES = ["Grilled Sandwich", "Idli", "Masala Dosa", "Paani Puri", "Samosa", "Vada Pav"]
 IMG_SIZE    = (224, 224)
-MODEL_PATH  = "model.h5"
+MODEL_PATH  = "food_model.keras"
 
 FOOD_INFO = {
     "Vada Pav":  "🥔 Mumbai's iconic street burger — spiced potato fritter in a bun.",
@@ -132,7 +132,11 @@ FOOD_INFO = {
 def load_model():
     if not os.path.exists(MODEL_PATH):
         return None
-    return tf.keras.models.load_model(MODEL_PATH)
+    try:
+        return tf.keras.models.load_model(MODEL_PATH)
+    except Exception:
+        import tf_keras
+        return tf_keras.models.load_model(MODEL_PATH)
 
 model = load_model()
 
