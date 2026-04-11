@@ -116,7 +116,7 @@ footer {visibility: hidden;}
 # ── Constants ─────────────────────────────────────────────────────────────────
 CLASS_NAMES = ["Grilled Sandwich", "Idli", "Masala Dosa", "Paani Puri", "Samosa", "Vada Pav"]
 IMG_SIZE    = (224, 224)
-MODEL_PATH  = "street_food_model.h5"
+MODEL_PATH  = "model_resaved.h5"
 
 FOOD_INFO = {
     "Vada Pav":  "🥔 Mumbai's iconic street burger — spiced potato fritter in a bun.",
