@@ -2,6 +2,9 @@ import streamlit as st
 import numpy as np
 from PIL import Image
 import os
+os.environ["TF_USE_LEGACY_KERAS"] = "0"
+os.environ["KERAS_BACKEND"] = "tensorflow"
+import keras
 import tensorflow as tf
 import io
 import base64
@@ -131,7 +134,7 @@ FOOD_INFO = {
 def load_model():
     if not os.path.exists(MODEL_PATH):
         return None
-    return tf.keras.models.load_model(MODEL_PATH, compile=False)
+    return keras.models.load_model(MODEL_PATH, compile=False)
 
 model = load_model()
 
