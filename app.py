@@ -122,10 +122,10 @@ MODEL_PATH  = "model_resaved.h5"
 
 FOOD_INFO = {
     "Vada Pav":  "🥔 Mumbai's iconic street burger — spiced potato fritter in a bun.",
-    "Sandwich":  "🥪 Mumbai-style toasted sandwich, often layered with chutney & veggies.",
+    "Grilled Sandwich":  "🥪 Mumbai-style toasted sandwich, often layered with chutney & veggies.",
     "Samosa":    "🔺 Crispy pastry stuffed with spiced potatoes and peas.",
-    "Pani Puri": "💧 Hollow crisp shells filled with tangy tamarind water.",
-    "Dosa":      "🫓 Thin crispy South Indian crepe made from fermented rice batter.",
+    "Paani Puri": "💧 Hollow crisp shells filled with tangy tamarind water.",
+    "Masala Dosa":      "🫓 Thin crispy South Indian crepe made from fermented rice batter.",
     "Idli":      "⚪ Soft steamed rice cakes, a South Indian breakfast staple.",
 }
 
